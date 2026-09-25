@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro de usuario{% endblock %}
+
+{% block content %}
+
+    {% if nombre %}
+        <p>Último usuario registrado: {{ nombre }}</p>
+    {% endif %}
+
+    <form method="POST">
+
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.nombre.label }}<br>
+            {{ form.nombre() }}
+        </p>
+
+        {% for error in form.nombre.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+
+        <p>
+            {{ form.correo.label }}<br>
+            {{ form.correo() }}
+        </p>
+
+        {% for error in form.correo.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ form.enviar() }}</p>
+
+    </form>
+
+{% endblock %}
+
+#Comprobación 6: explica la función de extends, block, hidden_tag y form.nombre.errors.
+# `extends`: Permite que la plantilla actual herede de otra plantilla base, 
+#reutilizando su estructura y contenido.
+#block: Define secciones de contenido que pueden ser sobrescritas por plantillas derivadas.
+#hidden_tag: Genera un campo oculto en el formulario para proteger contra ataques CSRF
+#form.nombre.errors: Contiene una lista de mensajes de error asociados con el campo "nombre" 
+#del formulario, que se muestran si la validación falla.

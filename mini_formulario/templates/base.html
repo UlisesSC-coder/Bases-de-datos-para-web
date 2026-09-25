@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}Aplicación Flask{% endblock %}
+    </title>
+</head>
+<body>
+
+    <h1>Sistema de registro</h1>
+
+    {% for message in get_flashed_messages() %}
+        <div>{{ message }}</div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
+
+
+{# Comprobación 5: el bloque modificable es content y el ciclo de mensajes flash
+    está definido al inicio de esta plantilla. #}
+
