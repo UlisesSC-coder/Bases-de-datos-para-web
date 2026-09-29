@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field %}
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block content %}
+<h1>Iniciar sesión</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ render_field(form.username) }}
+    {{ render_field(form.password) }}
+    {{ form.submit() }}
+</form>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mini sistema{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        {% block nav %}
+        <a href="{{ url_for('users.index') }}">Inicio</a>
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('users.register') }}">Nuevo usuario</a>
+            <a href="{{ url_for('users.profile', id=session['user_id']) }}">
+                {{ session['username']|capitalize }}
+            </a>
+            <a href="{{ url_for('users.logout') }}">Salir</a>
+        {% else %}
+            <a href="{{ url_for('users.login') }}">Entrar</a>
+            <a href="{{ url_for('users.register') }}">Registrarse</a>
+        {% endif %}
+        {% endblock %}
+    </nav>
+
+    {% include "_flash.html" %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

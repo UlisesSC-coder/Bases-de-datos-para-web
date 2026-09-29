@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Perfil de {{ user.username }}{% endblock %}
+
+{% block content %}
+<h1>{{ user.nombre|capitalize }} {{ user.apellido|capitalize }}</h1>
+<p>Usuario: {{ user.username }}</p>
+<p>Correo: {{ user.email|default("no registrado") }}</p>
+<p>Miembro desde: {{ user.created_at.strftime('%d/%m/%Y') if user.created_at else 'sin fecha' }}</p>
+
+<a class="boton-chico" href="{{ url_for('users.edit_profile', id=user.id) }}">Editar</a>
+
+<form method="POST" action="{{ url_for('users.delete_profile', id=user.id) }}"
+      onsubmit="return confirm('¿Seguro que quieres eliminar este usuario?');">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="peligro">Eliminar</button>
+</form>
+{% endblock %}
