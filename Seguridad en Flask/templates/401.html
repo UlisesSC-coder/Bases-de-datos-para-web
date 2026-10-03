@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Error 401{% endblock %}
+
+{% block content %}
+<h1>Error 401</h1>
+<p>Necesitas iniciar sesión para ver esta página.</p>
+<a class="boton-chico" href="{{ url_for('users.login') }}">Iniciar sesión</a>
+{% endblock %}
